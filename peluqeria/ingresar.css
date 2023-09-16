@@ -1,0 +1,107 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+/* Contenedor */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    background-color: black; /* Fondo negro para el contenedor */
+}
+
+/* Estilos del encabezado */
+header {
+    background-color: #000;
+    padding: 10px 0;
+    text-align: center;
+    background-attachment: fixed; /* Fondo fijo para el encabezado */
+}
+
+/* Estilos para el mapa y el video */
+.map-container,
+.video-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 0;
+    background-image: url('istockphoto-1444024141-612x612.jpg'); /* Utiliza la misma imagen que en la clase .hero */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Fondo fijo para el mapa y el video */
+    text-align: center;
+    border-radius: 0;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para la navegación */
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Estilos del logotipo */
+.logo {
+    color: #ffd700; /* Dorado */
+    font-size: 24px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Estilos para el formulario */
+form {
+    margin: 20px auto;
+    width: 300px;
+    padding: 10px;
+    background-color: black; /* Fondo negro para el formulario */
+    border: 1px solid #ccc;
+}
+
+label, input {
+    display: block;
+    margin: 10px 0;
+    color: #fff; /* Color del texto en blanco */
+}
+
+input {
+    width: 100%;
+    padding: 5px;
+    background-color: #333; /* Fondo gris oscuro para los campos de entrada */
+    border: none;
+    color: #fff;
+}
+
+/* Estilo para los botones */
+button {
+    background-color: #ffd700;
+    color: #cc0a0a;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #000;
+    color: #ffd700;
+}

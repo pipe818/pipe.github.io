@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="registrar.css">
+        <title>Registro de Usuario</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Registro de Usuario</h1>
+            <form id="registro-form">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" placeholder="Escribe tu nombre" required><br><br>
+    
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" placeholder="Escribe tu correo electrónico" required><br><br>
+    
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" placeholder="Escribe tu contraseña" required><br><br>
+                
+            <h3>Datos Personales</h3>
+            <label for="tipoIdentificacion">Tipo de Identificación:</label>
+            <select name="tipoIdentificacion" id="tipoIdentificacion">
+                <option value="cedula">Cédula</option>
+                <option value="pasaporte">Pasaporte</option>
+                <option value="otro">Tarjeta de Identidad</option>
+            </select><br><br>
+
+            <label for="telefono">cedula:</label>
+            <input type="tel" name="telefono" id="telefono" pattern="[0-9]+" required><br><br>
+
+            <h3>Fecha de Nacimiento</h3>
+            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" name="fechaNacimiento" id="fechaNacimiento" min="1900-01-01" max="2099-12-31"><br><br>
+
+            <h3>Género</h3>
+            <input type="radio" name="genero" value="Masculino" id="masculino"> <label for="masculino">Masculino</label>
+            <input type="radio" name="genero" value="Femenino" id="femenino"> <label for="femenino">Femenino</label><br><br>
+
+            <h3>Subir Fotografía 3x4</h3>
+            <input type="file" name="foto" id="foto"><br><br>
+
+            <h3>Suscribirse para los boletines semanales</h3>
+            <input type="checkbox" name="suscribirse" id="suscribirse"><br><br>
+
+            <h3>Botones de Acción</h3>
+            <button type="submit" class="btn" id="registrar-btn">Registrarse</button>
+            <button type="button" class="btn" id="ingresar-btn">Ingresar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registro-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            verificarRegistro();
+        });
+
+        document.getElementById('ingresar-btn').addEventListener('click', function () {
+            irAIngresar();
+        });
+
+        function verificarRegistro() {
+           
+            if (validarFormulario()) {
+                guardarDatos();
+            } else {
+                alert('Por favor, complete todos los campos correctamente.');
+            }
+        }
+
+        function validarFormulario() {
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+           if (nombre.trim() === '' || email.trim() === '' || password.trim() === '') {
+                return false;
+            }
+            return true;
+        }
+
+        function guardarDatos() {
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+           localStorage.setItem('nombreUsuario', nombre);
+            localStorage.setItem('emailUsuario', email);
+            localStorage.setItem('passwordUsuario', password);
+
+            alert('Registro exitoso. Puedes ir a la página de ingreso.');
+
+             window.location.href = 'Ingresar.html';
+        }
+
+        function irAIngresar() {
+            window.location.href = 'Ingresar.html';
+        }
+    </script>
+</body>
+</html>

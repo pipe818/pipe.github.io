@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Citas</title>
+    <link rel="stylesheet" href="cita.css">
+</head>
+<body>
+    <h1>Reserva de Citas en Mi Peluquería</h1>
+    <form id="citaForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required><br>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required><br>
+
+        <label for="horaSelect">Hora:</label>
+        <select id="horaSelect" required>
+          <!-- Las opciones de hora se generarán dinámicamente con JavaScript -->
+        </select><br>
+
+        <button type="submit" id="reservarBtn">Reservar Cita</button>
+    </form>
+    <div id="mensaje"></div>
+
+    <div id="horasDisponibles"></div>
+
+    <div id="reservasParaFecha">
+        <h2>Reservas para la fecha seleccionada:</h2>
+        <ul id="listaReservas"></ul>
+    </div>
+
+    <script src="scrip.js"></script>
+    <div id="userStatus">
+        <!-- JavaScript llenará esto con "Conectado como [nombre]" o "No conectado" -->
+      </div>
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const citaForm = document.getElementById('citaForm');
+    const mensajeDiv = document.getElementById('mensaje');
+    const fechaInput = document.getElementById('fecha');
+    const horaSelect = document.getElementById('horaSelect');
+    const horasDisponiblesDiv = document.getElementById('horasDisponibles');
+    const listaReservas = document.getElementById('listaReservas');
+
+    // Obtener las citas almacenadas en localStorage o inicializar un array vacío
+    let citasProgramadas = JSON.parse(localStorage.getItem('citasProgramadas')) || [];
+
+    // Función para guardar las citas en localStorage
+    function guardarCitasEnLocalStorage() {
+        localStorage.setItem('citasProgramadas', JSON.stringify(citasProgramadas));
+    }
+
+    // Función para cargar las horas disponibles
+    function cargarHorasDisponibles(fechaSeleccionada) {
+        // Simula obtener las horas disponibles para esa fecha (debes implementar tu lógica aquí)
+        // En este ejemplo, simplemente usamos un conjunto fijo de horas disponibles
+        const horasDisponibles = ["09:00 AM", "10:00 AM", "11:00 AM", "02:00 PM", "03:00 PM"];
+
+        // Filtrar las horas ocupadas para la fecha seleccionada
+        const citasParaFecha = citasProgramadas.filter(cita => cita.fecha === fechaSeleccionada);
+
+        // Eliminar las horas ocupadas de las horas disponibles
+        citasParaFecha.forEach(cita => {
+            const horaOcupadaIndex = horasDisponibles.indexOf(cita.hora);
+            if (horaOcupadaIndex !== -1) {
+                horasDisponibles.splice(horaOcupadaIndex, 1);
+            }
+        });
+
+        // Limpiar el cuadro de selección actual
+        horaSelect.innerHTML = '';
+
+        // Llenar el cuadro de selección con las horas disponibles
+        horasDisponibles.forEach(hora => {
+            const option = document.createElement('option');
+            option.value = hora;
+            option.textContent = hora;
+            horaSelect.appendChild(option);
+        });
+
+        // Mostrar las horas disponibles en el div de horas disponibles
+        horasDisponiblesDiv.innerHTML = `Horas disponibles para ${fechaSeleccionada}: ${horasDisponibles.join(', ')}`;
+    }
+
+    // Cargar las horas disponibles al iniciar la página
+    cargarHorasDisponibles('');
+
+    // Función para mostrar las reservas para una fecha específica
+    function mostrarReservasParaFecha(fechaSeleccionada) {
+        const reservasParaFecha = citasProgramadas.filter(cita => cita.fecha === fechaSeleccionada);
+
+        // Limpiar la lista de reservas
+        listaReservas.innerHTML = '';
+
+        // Mostrar las reservas en la lista
+        if (reservasParaFecha.length > 0) {
+            reservasParaFecha.forEach(cita => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Nombre: ${cita.nombre}, Hora: ${cita.hora}`;
+                listaReservas.appendChild(listItem);
+            });
+        } else {
+            const listItem = document.createElement('li');
+            listItem.textContent = 'No hay reservas para esta fecha.';
+            listaReservas.appendChild(listItem);
+        }
+    }
+
+    citaForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const nombre = document.getElementById('nombre').value;
+        const fecha = fechaInput.value;
+        const hora = horaSelect.value;
+
+        // Verificar si la hora ya está ocupada para la fecha seleccionada
+        const citaExistente = citasProgramadas.find(cita => cita.fecha === fecha && cita.hora === hora);
+
+        if (citaExistente) {
+            mensajeDiv.innerHTML = `La hora seleccionada (${hora}) para ${fecha} ya está ocupada. Por favor, elige otra hora.`;
+        } else {
+            // Crear una nueva cita
+            const nuevaCita = {
+                nombre,
+                fecha,
+                hora
+            };
+
+            // Agregar la cita al array de citas programadas
+            citasProgramadas.push(nuevaCita);
+
+            // Guardar las citas en localStorage
+            guardarCitasEnLocalStorage();
+
+            // Limpiar el formulario
+            document.getElementById('nombre').value = '';
+
+            // Mostrar un mensaje de éxito
+            mensajeDiv.innerHTML = `¡Cita reservada con éxito para ${nombre} el ${fecha} a las ${hora}!`;
+
+            // Actualizar las horas disponibles
+            cargarHorasDisponibles(fecha);
+
+            // Mostrar las reservas para la fecha seleccionada
+            mostrarReservasParaFecha(fecha);
+        }
+    });
+
+    fechaInput.addEventListener('change', function () {
+        const fechaSeleccionada = fechaInput.value;
+
+        // Cargar las horas disponibles para la fecha seleccionada
+        cargarHorasDisponibles(fechaSeleccionada);
+
+        // Mostrar las reservas para la fecha seleccionada
+        mostrarReservasParaFecha(fechaSeleccionada);
+    });
+});
+
+</script>
+</html>

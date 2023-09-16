@@ -1,0 +1,4 @@
+la pagina es para unba peluqueria la idea es que los clientes puedan ver fotos sobre el trabajo y sus precios; tambien hay un mapa y un video que en este caso solo fue para efectos de ejemplo.
+la pagina cuenta con direccion dentro de ella de cada zona, ademas direccion a diferentes paginas como registro e ingreso y mas especial aun citas. Citas es especial porque solo le permite ingresar al usurio 
+luego de iniciar secion y para ello tiene que registrace recopilando datos que luego pueden ser usados para publicidad; la pagina principal te avisa en laparte superior cunado esta en linia o cuando no; cunado entras 
+a la pagina de las citas te pide escoger un afecha( que en este caso solo hace una revision  en la base de datos local) en la que te muestra que horas estan disponibles.

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Peluquería Masculina</title>
+</head>
+<body>
+  
+  <nav>
+    <div id="userStatus">
+    </div>
+    <button type="button" class="btn" id="registrar-btn" onclick="irARegistro()">Registrarse</button>
+    <button type="button" class="btn" id="ingresar-btn" onclick="irAIngresar()">Ingresar</button>
+    <button type="button" class="btn" id="desconectar-btn" onclick="cerrarSesion()">Desconectar</button>
+    <div class="container">
+      <h1 class="logo">Danny barber</h1>
+      <ul>
+        <li><a href="#1">Inicio</a></li>
+        <li><a href="#2">Servicios</a></li>
+        <li><a href="#3">Reservas</a></li>
+        <li><a href="#4">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="1">
+    <div class="container">
+      <h2>Estilo y Elegancia para Hombres</h2>
+      <p>Los mejores cortes de cabello y afeitados en la ciudad.</p>
+      <a href="citas.html" class="btn">Reserva Ahora</a>
+    </div>
+  </section>
+
+  <section class="services precios" id="2">
+    <div class="container">
+      <div class="service">
+        <a href="citas.html">
+          <img src="253325822_228241889409716_9048314557244803492_n.jpg" alt="Corte de Cabello" width="200" height="200">
+          <h3>Corte de Cabello</h3>
+          <span class="price">$30</span>
+        </a>
+      </div>
+      <div class="service">
+        <a href="citas.html">
+          <img src="273733966_1290253414834970_6113849786305017024_n.jpg" alt="Afeitado Clásico" width="200" height="200">
+          <h3>Afeitado Clásico</h3>
+          <span class="price">$20</span>
+        </a>
+      </div>
+      <!-- Agrega más elementos de servicio según sea necesario -->
+    </div>
+  </section>
+
+  <video width="1200" height="400" autoplay controls>
+    <source src="Peluqeria(1).mp4" type="video/mp4">
+    Tu navegador no admite la reproducción de videos.
+  </video>
+
+  <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+    <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
+    <script>
+      (function () {
+        var setting = {
+          "query": "Calle 97, San Martin de Porras, Medellín, Antioquia, Colombia",
+          "width": 1200,
+          "height": 400,
+          "satellite": true,
+          "zoom": 12,
+          "placeId": "ElhDbC4gOTcsIFNhbiMNdw",
+          "coords": [6.295643999999999, -75.58144],
+          "lang": "es",
+          "queryString": "Calle 97, San Martin de Porras, Medellín, Antioquia, Colombia",
+          "centerCoord": [6.295643999999999, -75.58144],
+          "id": "map-9cd199b9cc5410cd3b1ad21cab2e54d3",
+          "embed_id": "993281"
+        };
+        var d = document;
+        var s = d.createElement('script');
+        s.src = 'https://1map.com/js/script-for-user.js?embed_id=993281';
+        s.async = true;
+        s.onload = function (e) {
+          window.OneMap.initMap(setting);
+        };
+        var to = d.getElementsByTagName('script')[0];
+        to.parentNode.insertBefore(s, to);
+      })();
+    </script>
+    
+    <a href="https://1map.com/es/map-embed">1 Map</a>
+  </div>
+
+  <section class="contact" id="3">
+    <div class="container">
+      <h2>Contacto</h2>
+      <p>Estamos ubicados en 123 Calle Principal, Ciudad.</p>
+      <p>Llámanos al: (123) 456-7890</p>
+      <a href="#" class="btn">Enviar Mensaje</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Peluquería Masculina</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      switch (event.key) {
+        case '1':
+          window.location.href = '#1';
+          break;
+        case '2':
+          window.location.href = '#2';
+          break;
+        case '3':
+          window.location.href = '#3';
+          break;
+        case '4':
+          window.location.href = '#4';
+          break;
+        default:
+          break;
+      }
+    });
+
+    function iniciarSesion() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const emailGuardado = localStorage.getItem('emailUsuario');
+      const passwordGuardado = localStorage.getItem('passwordUsuario');
+
+      if (email === emailGuardado && password === passwordGuardado) {
+        localStorage.setItem('usuarioConectado', 'true');
+        localStorage.setItem('nombreUsuario', 'Nombre del Usuario');
+
+        window.location.href = 'index.html';
+      } else {
+        alert('Correo electrónico o contraseña incorrectos.');
+      }
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem('usuarioConectado');
+      localStorage.removeItem('nombreUsuario');
+      location.reload();
+    }
+
+    function irAIngresar() {
+      window.location.href = 'ingresar.html';
+    }
+
+    function irARegistro() {
+      window.location.href = 'registrar.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const emailGuardado = localStorage.getItem('emailUsuario');
+      const usuarioConectado = localStorage.getItem('usuarioConectado');
+      const userStatusElement = document.getElementById('userStatus');
+
+      if (emailGuardado && usuarioConectado === 'true') {
+        userStatusElement.textContent = 'Conectado como [nombre]';
+        console.log("Usuario conectado:", usuarioConectado);
+      } else {
+        userStatusElement.textContent = 'No conectado';
+      }
+    });
+  </script>
+</body>
+</html>

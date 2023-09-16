@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de Usuario</title>
+    <link rel="stylesheet" type="text/css" href="ingresar.css">
+</head>
+<body>
+    <h1>Ingreso de Usuario</h1>
+    <form>
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" placeholder="Escribe tu correo electrónico"><br><br>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" placeholder="Escribe tu contraseña"><br><br>
+    </form>
+
+    <button type="button" class="btn" id="registrar-btn" onclick="irARegistro()">Registrarse</button>
+    <button type="button" class="btn" id="ingresar-btn" onclick="iniciarSesion()">Ingresar</button>
+
+    <div id="userStatus">
+    </div>
+
+    <script>
+        function cargarCorreoAlmacenado() {
+            const emailGuardado = localStorage.getItem('emailUsuario');
+            if (emailGuardado) {
+                document.getElementById('email').value = emailGuardado;
+            }
+        }
+        
+        function cargarContrasenaAlmacenada() {
+            const passwordGuardado = localStorage.getItem('passwordUsuario');
+            if (passwordGuardado) {
+                document.getElementById('password').value = passwordGuardado;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const usuarioConectado = localStorage.getItem('usuarioConectado');
+            if (usuarioConectado === 'true') {
+                const userStatusElement = document.getElementById('userStatus');
+                userStatusElement.textContent = 'Conectado como ' + localStorage.getItem('nombreUsuario');
+            } else {
+                const userStatusElement = document.getElementById('userStatus');
+                userStatusElement.textContent = 'No conectado';
+            }
+        });
+
+        function iniciarSesion() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const emailGuardado = localStorage.getItem('emailUsuario');
+            const passwordGuardado = localStorage.getItem('passwordUsuario');
+
+            if (email === emailGuardado && password === passwordGuardado) {
+                alert('Inicio de sesión exitoso.');
+                window.location.href = 'dani.html';
+            } else {
+                alert('Correo electrónico o contraseña incorrectos.');
+            }
+            
+            if (email === emailGuardado && password === passwordGuardado) {
+                localStorage.setItem('usuarioConectado', 'true');
+                localStorage.setItem('nombreUsuario', 'Nombre del Usuario');
+
+                const userStatusElement = document.getElementById('userStatus');
+                userStatusElement.textContent = 'Conectado como ' + localStorage.getItem('nombreUsuario');
+
+                window.location.href = 'dani.html';
+            } else {
+                alert('Correo electrónico o contraseña incorrectos.');
+            }
+        }
+
+        function irARegistro() {
+            window.location.href = 'registrar.html';
+        }
+
+        document.getElementById('ingresar-btn').addEventListener('click', function () {
+            iniciarSesion();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const usuarioConectado = localStorage.getItem('usuarioConectado');
+            if (usuarioConectado === 'true') {
+                const userStatusElement = document.getElementById('userStatus');
+                userStatusElement.textContent = 'Conectado como ' + localStorage.getItem('nombreUsuario');
+            } else {
+                const userStatusElement = document.getElementById('userStatus');
+                userStatusElement.textContent = 'No conectado';
+            }
+        });
+    </script>
+</body>
+</html>

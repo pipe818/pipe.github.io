@@ -1,0 +1,181 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Contenedor */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: black; /* Fondo negro para el contenedor */
+}
+
+/* Estilos del encabezado */
+header {
+  background-color: #000;
+  padding: 10px 0;
+  text-align: center;
+  background-attachment: fixed; /* Fondo fijo para el encabezado */
+}
+
+/* Estilos para el mapa y el video */
+.map-container,
+.video-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 0;
+  background-image: url('istockphoto-1444024141-612x612.jpg'); /* Utiliza la misma imagen que en la clase .hero */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Fondo fijo para el mapa y el video */
+  text-align: center;
+  border-radius: 0;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para la navegación */
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Estilos del logotipo */
+.logo {
+  color: #ffd700; /* Dorado */
+  font-size: 24px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* Estilos de la sección de héroe */
+.hero {
+  text-align: center;
+  padding: 100px 0;
+  background-image: url('istockphoto-1444024141-612x612.jpg'); /* Cambia la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Esto mantiene la imagen de fondo fija */
+}
+
+.hero h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+/* Estilos del botón */
+.btn {
+  background-color: #ffd700;
+  color: #cc0a0a;
+  padding: 10px 20px;
+  border: none;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  max-width: 200px; /* Ajusta el tamaño máximo de las imágenes */
+  margin: 5px; /* Agregar un margen general para separar los botones */
+}
+
+.btn:hover {
+  background-color: #000;
+  color: #ffd700;
+}
+
+/* Estilos de la sección de servicios */
+.services, .precios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.service {
+  flex: 0 0 calc(33.33% - 40px); /* Ajusta el ancho de cada servicio según tus necesidades */
+  margin: 20px; /* Espaciado entre los elementos */
+  text-align: center;
+}
+
+/* Estilo para la sección de precios */
+.precios .service {
+  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para resaltar el contenido */
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center; /* Alinea el contenido al centro */
+}
+
+/* Estilo para el texto de precio dentro de la sección de precios */
+.precios .service .price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffd700; /* Color dorado para el precio */
+}
+
+/* Estilo para el texto del servicio dentro de la sección de precios */
+.precios .service h3,
+.precios .service p {
+  color: white; /* Cambia el color del texto para que sea legible en el fondo */
+}
+
+/* Estilo para los botones de reserva en la sección de precios */
+.precios .service a.btn {
+  display: inline-block; /* Usa "inline-block" en lugar de "block" para que los botones se centren junto con las imágenes */
+  max-width: 200px; /* Ajusta el ancho máximo según tus preferencias */
+}
+
+/* Ajusta el espaciado entre los botones y el texto de precio */
+.precios .service a.btn,
+.precios .service .price {
+  margin-top: 10px; /* Espaciado superior entre el botón y el precio */
+}
+
+/* Estilos para la sección de contacto */
+.contact {
+  text-align: center;
+  padding: 100px 0;
+  background-image: url('istockphoto-1444024141-612x612.jpg'); /* Cambia la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Esto mantiene la imagen de fondo fija */
+}
+
+/* Fondo semitransparente para el botón de enviar mensaje en la sección de contacto */
+.contact  {
+  background-color: rgba(255, 215, 0, 0.7); /* Fondo semitransparente dorado */
+  color: #000;
+}
+
+/* Ajusta el tamaño del título */
+h1 {
+  font-size: 33px;
+}
+
+/* Ajusta el tamaño del subtítulo */
+.hero  {
+  font-size: 20px;
+}
